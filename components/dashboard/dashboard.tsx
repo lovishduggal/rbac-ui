@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-
-import { GlobeIcon, FingerprintIcon } from 'lucide-react';
+import { FingerprintIcon } from 'lucide-react';
 import TopBar from './top-bar';
 import Nav from './nav';
+import { ModeToggle } from '../mode-toggle/mode-toggle';
 
 export default function Dashboard({
   children,
@@ -11,7 +10,7 @@ export default function Dashboard({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex min-h-screen w-full">
       <div className="hidden lg:block lg:w-64 lg:shrink-0 lg:border-r">
         <div className="flex h-full flex-col justify-between py-6 px-4">
           <div className="space-y-6">
@@ -25,18 +24,12 @@ export default function Dashboard({
             </Link>
             <Nav />
           </div>
-          <div className="space-y-4">
-            <Button variant="outline" size="sm" className="w-full">
-              Upgrade to Pro
-            </Button>
-            <div className="flex items-center gap-2 text-sm">
-              <GlobeIcon className="h-5 w-5" />
-              <span>English</span>
-            </div>
+          <div className="space-y-4 flex items-center justify-center">
+            <ModeToggle />
           </div>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex flex-col w-full overflow-auto">
         <TopBar />
         <main className="p-4 lg:p-8">
           <h1 className="text-2xl font-bold">Dashboard</h1>
@@ -44,7 +37,7 @@ export default function Dashboard({
             Welcome to your dashboard. You can oversee your users, roles, and
             permissions here.
           </p>
-          <div className="mt-8">{children}</div>
+          <div className="mt-8 w-full max-w-full">{children}</div>
         </main>
       </div>
     </div>

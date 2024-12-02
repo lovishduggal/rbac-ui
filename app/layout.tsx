@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider/theme-provider';
 import TanStackProvider from '@/providers/tan-stack-provider';
-import Dashboard from '@/components/dashboard/dashboard';
+import { Toaster } from '@/components/ui/sonner';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -39,7 +39,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TanStackProvider>
-            <Dashboard>{children}</Dashboard>
+            {children}
+            <Toaster richColors />
           </TanStackProvider>
         </ThemeProvider>
       </body>
