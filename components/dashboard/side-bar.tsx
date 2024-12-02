@@ -23,7 +23,7 @@ export default function SideBar() {
             <Button variant="outline" size="sm" className="w-full">
               Upgrade to Pro
             </Button>
-            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-sm">
               <GlobeIcon className="h-5 w-5" />
               <span>English</span>
             </div>

@@ -1,5 +1,13 @@
-import Dashboard from '@/components/dashboard/dashboard';
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
-  return <Dashboard />;
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/users');
+  }, [router]);
+
+  return null;
 }

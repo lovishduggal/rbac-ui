@@ -4,10 +4,10 @@ import SideBar from './side-bar';
 
 export default function TopBar() {
   return (
-    <header className="sticky top-0 z-10 border-b bg-white px-4 py-3 dark:border-gray-800 dark:bg-gray-900 lg:hidden">
+    <header className="sticky top-0 z-10 border-b px-4 py-3  lg:hidden">
       <div className="flex items-center justify-between">
         <Link
-          href="#"
+          href="/"
           className="flex items-center gap-2 font-bold"
           prefetch={false}
         >
