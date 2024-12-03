@@ -117,10 +117,8 @@ export default function UserFormDialog({
       form.reset(userData);
     }
   }, [userData, form]);
-  console.log('ud', userData, id, form);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     if (isEdit) UpdateUserDetailsMutate(values);
     else createUserMutate(values);
   }

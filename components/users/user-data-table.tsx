@@ -113,7 +113,6 @@ export default function UserDataTable({
       handleTotalPages(sortedUsersData?.length);
   }, [sortedUsersData, handleTotalPages]);
 
-  console.log('CU', currentUsers);
   return (
     <Table className="overflow-x-auto">
       <TableHeader>

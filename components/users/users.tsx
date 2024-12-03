@@ -35,7 +35,6 @@ export default function Users() {
   const indexOfFirstUser = indexOfLastUser - ITEMS_PER_PAGE;
   function handleTotalPages(totalUsers: number) {
     const newTotalPages = Math.ceil(totalUsers / ITEMS_PER_PAGE);
-    console.log('totalUsers', totalUsers, newTotalPages);
     setTotalPages(newTotalPages);
 
     // Check if the current page exceeds the total pages
