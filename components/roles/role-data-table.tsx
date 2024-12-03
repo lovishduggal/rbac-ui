@@ -151,7 +151,9 @@ export default function RoleDataTable({
                     variant="outline"
                     onClick={() => setSelectedRoleId(role.id as string)}
                   >
-                    {isRoleDataLoading && role.id === selectedRoleId ? (
+                    {!isDeleteRoleMutatePending &&
+                    isRoleDataLoading &&
+                    role.id === selectedRoleId ? (
                       <Loader2Icon className="animate-spin" />
                     ) : (
                       <PencilIcon />

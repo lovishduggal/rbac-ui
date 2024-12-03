@@ -153,7 +153,9 @@ export default function UserDataTable({
                     variant="outline"
                     onClick={() => setSelectedUserId(user.id as string)}
                   >
-                    {isUserDataLoading && user.id === selectedUserId ? (
+                    {!isDeleteUserMutatePending &&
+                    isUserDataLoading &&
+                    user.id === selectedUserId ? (
                       <Loader2Icon className="animate-spin" />
                     ) : (
                       <PencilIcon />
