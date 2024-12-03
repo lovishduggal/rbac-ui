@@ -1,18 +1,20 @@
 {
-  "users": [],
-  "comments": [
+  "users": [
     {
-      "id": "1",
-      "text": "a comment about post 1",
-      "postId": "1"
+      "id": "d54e",
+      "username": "Lovish",
+      "email": "lovishduggal69@gmail.com",
+      "role": "Admin",
+      "status": "Active"
     },
     {
-      "id": "2",
-      "text": "another comment about post 1",
-      "postId": "1"
+      "id": "a254",
+      "username": "Tania",
+      "email": "taniaduggal60@gmail.com",
+      "role": "Admin",
+      "status": "Active"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "roles": [],
+  "permissions": []
 }

@@ -7,31 +7,34 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Input } from '../ui/input';
-import { SearchIcon } from 'lucide-react';
-import SortingDropdownMenu from './sorting-dropdown-menu';
-import UsersTable from './users-table';
-import UserDialog from './user-dialog';
+import UserDataTable from './user-data-table';
+import UserDialog from './user-form-dialog';
 import { Button } from '../ui/button';
 import { useState } from 'react';
-import CustomPagination from '../ui/custom-pagination';
+import DynamicPagination from '../ui/dynamic-pagination';
+import { ITEMS_PER_PAGE } from '@/constants';
+import DynamicSearch from '../ui/dynamic-search';
+import DynamicSortingDropdownMenu from '../ui/dynamic-sorting-dropdown-menu';
+
+const sortByOptions = [
+  { value: 'username', label: 'Name' },
+  { value: 'email', label: 'Email' },
+  { value: 'role', label: 'Role' },
+  { value: 'status', label: 'Status' },
+];
 
 export default function Users() {
   const [search, setSearch] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
   const [sortBy, setSortBy] = useState('username');
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const [totalPages, setTotalPages] = useState(1); // State for total pages
-  const itemsPerPage = 1; // Number of items per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   // Calculate the current users to display based on pagination
-  const indexOfLastUser = currentPage * itemsPerPage;
-  const indexOfFirstUser = indexOfLastUser - itemsPerPage;
-  // const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
-
-  // const totalPages = Math.ceil(sortedUsers.length / itemsPerPage); // Calculate total pages
+  const indexOfLastUser = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstUser = indexOfLastUser - ITEMS_PER_PAGE;
   function handleTotalPages(totalUsers: number) {
-    const newTotalPages = Math.ceil(totalUsers / itemsPerPage);
+    const newTotalPages = Math.ceil(totalUsers / ITEMS_PER_PAGE);
     console.log('totalUsers', totalUsers, newTotalPages);
     setTotalPages(newTotalPages);
 
@@ -60,24 +63,16 @@ export default function Users() {
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between mb-4 space-x-8">
-          <div className="relative flex-1">
-            <SearchIcon className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search..."
-              value={search} // Bind search input to state
-              onChange={(e) => setSearch(e.target.value)} // Update search state
-              className="pl-8 w-full"
-            />
-          </div>
-          <SortingDropdownMenu
+          <DynamicSearch search={search} setSearch={setSearch} />
+          <DynamicSortingDropdownMenu
             onSortChange={setSortBy}
             onOrderChange={setSortOrder}
             currentSortBy={sortBy}
             currentOrder={sortOrder}
+            sortByOptions={sortByOptions}
           />
         </div>
-        <UsersTable
+        <UserDataTable
           search={search}
           sortBy={sortBy}
           sortOrder={sortOrder}
@@ -87,36 +82,7 @@ export default function Users() {
         />
       </CardContent>
       <CardFooter>
-        {/* <Pagination>
-          <PaginationContent className="w-full flex justify-between items-center">
-            <PaginationItem>
-              <PaginationPrevious
-              className={`cursor-pointer ${
-                currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              onClick={() => handlePageChange(currentPage - 1)}
-              />
-            </PaginationItem>
-            <div className="text-sm">
-              Showing {Math.min((currentPage - 1) * PER_PAGE + 1, totalCount)}{' '}
-              to {Math.min(currentPage * PER_PAGE, totalCount)} of {totalCount}{' '}
-              items
-            </div>
-            <PaginationItem>
-              <PaginationNext
-              className={`cursor-pointer ${
-                isLoading ||
-                usersVideosData?.data?.length === 0 ||
-                currentPage === totalPages
-                  ? 'opacity-50 cursor-not-allowed'
-                  : ''
-              }`}
-              onClick={() => handlePageChange(currentPage + 1)}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination> */}
-        <CustomPagination
+        <DynamicPagination
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           totalPages={totalPages}

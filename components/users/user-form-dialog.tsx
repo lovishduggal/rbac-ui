@@ -45,7 +45,7 @@ const formSchema = z.object({
   status: z.string(),
 });
 
-interface UserDialogProps {
+interface UserFormDialogProps {
   title: string;
   description: string;
   btnText: string;
@@ -55,7 +55,7 @@ interface UserDialogProps {
   userData?: User;
   children: React.ReactNode;
 }
-export default function UserDialog({
+export default function UserFormDialog({
   title,
   description,
   btnText,
@@ -64,7 +64,7 @@ export default function UserDialog({
   isUserDataLoading = false,
   userData,
   children,
-}: UserDialogProps) {
+}: UserFormDialogProps) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const queryClient = useQueryClient();

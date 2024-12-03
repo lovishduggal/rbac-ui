@@ -6,16 +6,16 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-interface CustomPaginationProps {
+interface DynamicPaginationProps {
   currentPage: number;
   setCurrentPage: (page: number) => void;
   totalPages: number;
 }
-export default function CustomPagination({
+export default function DynamicPagination({
   currentPage,
   setCurrentPage,
   totalPages,
-}: CustomPaginationProps) {
+}: DynamicPaginationProps) {
   return (
     <Pagination>
       <PaginationContent className="w-full flex justify-between items-center">

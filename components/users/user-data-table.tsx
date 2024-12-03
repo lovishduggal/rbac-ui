@@ -16,11 +16,11 @@ import type { AxiosError } from 'axios';
 import type { User, Users } from '@/types';
 import TableLoader from '../ui/table-loader';
 import TableNoDataFound from '../ui/table-no-data-found';
-import UserDialog from './user-dialog';
+import UserFormDialog from './user-form-dialog';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-interface UsersTableProps {
+interface UserDataTableProps {
   search: string;
   sortBy: string;
   sortOrder: string;
@@ -30,14 +30,14 @@ interface UsersTableProps {
 }
 
 type SortableFields = 'username' | 'email' | 'role' | 'status';
-export default function UsersTable({
+export default function UserDataTable({
   search,
   sortBy,
   sortOrder,
   indexOfLastUser,
   indexOfFirstUser,
   handleTotalPages,
-}: UsersTableProps) {
+}: UserDataTableProps) {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
   const queryClient = useQueryClient();
@@ -141,7 +141,7 @@ export default function UsersTable({
                 </Badge>
               </TableCell>
               <TableCell className="flex items-center justify-end gap-2">
-                <UserDialog
+                <UserFormDialog
                   title="Edit User"
                   description="Edit user details"
                   btnText="Update"
@@ -160,7 +160,7 @@ export default function UsersTable({
                       <PencilIcon />
                     )}
                   </Button>
-                </UserDialog>
+                </UserFormDialog>
                 <Button
                   variant="outline"
                   onClick={() => handleDeleteUser(user.id as string)}

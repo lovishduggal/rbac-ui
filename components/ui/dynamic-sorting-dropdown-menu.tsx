@@ -14,13 +14,15 @@ interface SortingDropdownMenuProps {
   onOrderChange: (order: string) => void;
   currentSortBy: string;
   currentOrder: string;
+  sortByOptions: any[];
 }
 
-export default function SortingDropdownMenu({
+export default function DynamicSortingDropdownMenu({
   onSortChange,
   onOrderChange,
   currentSortBy,
   currentOrder,
+  sortByOptions,
 }: SortingDropdownMenuProps) {
   return (
     <DropdownMenu>
@@ -37,10 +39,11 @@ export default function SortingDropdownMenu({
             onSortChange(value);
           }}
         >
-          <DropdownMenuRadioItem value="username">Name</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="email">Email</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="role">Role</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="status">Status</DropdownMenuRadioItem>
+          {sortByOptions.map((option) => (
+            <DropdownMenuRadioItem key={option.value} value={option.value}>
+              {option.label}
+            </DropdownMenuRadioItem>
+          ))}
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
