@@ -1,4 +1,4 @@
-import type { User } from '@/types';
+import type { Role, User } from '@/types';
 import { api } from './client';
 
 // Users API:
@@ -25,5 +25,32 @@ export const getUserById = async (id: string) => {
 
 export const deleteUser = async (id: string) => {
   const response = await api.delete(`/users/${id}`);
+  return response.data;
+};
+
+// Roles API:
+export const createRole = async (data: Role) => {
+  const response = await api.post('/roles', data);
+  return response.data;
+};
+
+export const getAllRoles = async () => {
+  const response = await api.get('/roles');
+  return response.data;
+};
+
+export const getRoleById = async (id: string) => {
+  const response = await api.get(`/roles/${id}`);
+  return response.data;
+};
+
+export const updateRoleDetails = async (data: Role) => {
+  const updatedData = { ...data, id: undefined };
+  const response = await api.put(`/roles/${data.id}`, updatedData);
+  return response.data;
+};
+
+export const deleteRole = async (id: string) => {
+  const response = await api.delete(`/roles/${id}`);
   return response.data;
 };

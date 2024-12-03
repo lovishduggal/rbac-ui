@@ -7,8 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import UserDataTable from './user-data-table';
-import UserFormDialog from './user-form-dialog';
+import RoleDataTable from './role-data-table';
+import RoleFormDialog from './role-form-dialog';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import DynamicPagination from '../ui/dynamic-pagination';
@@ -16,17 +16,12 @@ import { ITEMS_PER_PAGE } from '@/constants';
 import DynamicSearch from '../ui/dynamic-search';
 import DynamicSortingDropdownMenu from '../ui/dynamic-sorting-dropdown-menu';
 
-const sortByOptions = [
-  { value: 'username', label: 'Name' },
-  { value: 'email', label: 'Email' },
-  { value: 'role', label: 'Role' },
-  { value: 'status', label: 'Status' },
-];
+const sortByOptions = [{ value: 'rolename', label: 'Name' }];
 
-export default function Users() {
+export default function Roles() {
   const [search, setSearch] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
-  const [sortBy, setSortBy] = useState('username');
+  const [sortBy, setSortBy] = useState('rolename');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -48,16 +43,16 @@ export default function Users() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle>Users Management</CardTitle>
-            <CardDescription>Manage your users here.</CardDescription>
+            <CardTitle>Roles Management</CardTitle>
+            <CardDescription>Manage your roles here.</CardDescription>
           </div>
-          <UserFormDialog
-            title="Add User"
-            description="Enter user details"
-            btnText="Add"
+          <RoleFormDialog
+            title="Create Role"
+            description="Enter role details"
+            btnText="Create"
           >
-            <Button>Add User</Button>
-          </UserFormDialog>
+            <Button>Create Role</Button>
+          </RoleFormDialog>
         </div>
       </CardHeader>
       <CardContent>
@@ -71,7 +66,7 @@ export default function Users() {
             sortByOptions={sortByOptions}
           />
         </div>
-        <UserDataTable
+        <RoleDataTable
           search={search}
           sortBy={sortBy}
           sortOrder={sortOrder}

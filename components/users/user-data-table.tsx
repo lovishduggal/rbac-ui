@@ -61,7 +61,7 @@ export default function UserDataTable({
 
   const { mutate: deleteUserMutate, isPending: isDeleteUserMutatePending } =
     useMutation({
-      mutationKey: ['create-user'],
+      mutationKey: ['delete-user'],
       mutationFn: async (id: string) => await deleteUser(id),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['get-all-users'] });
