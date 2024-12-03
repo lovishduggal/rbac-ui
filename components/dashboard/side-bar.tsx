@@ -1,6 +1,13 @@
 import { Button } from '../ui/button';
-import { GlobeIcon, MenuIcon } from 'lucide-react';
-import { SheetTrigger, SheetContent, Sheet } from '../ui/sheet';
+import { MenuIcon } from 'lucide-react';
+import {
+  SheetTrigger,
+  SheetContent,
+  Sheet,
+  SheetDescription,
+  SheetTitle,
+  SheetHeader,
+} from '../ui/sheet';
 import Nav from './nav';
 
 export default function SideBar() {
@@ -13,20 +20,15 @@ export default function SideBar() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-64">
+        <SheetHeader className="sr-only">
+          <SheetTitle>RBAC UI</SheetTitle>
+          <SheetDescription>Side navigation</SheetDescription>
+        </SheetHeader>
         <div className="flex h-full flex-col justify-between py-6 px-4">
           <div className="space-y-6">
             <nav className="space-y-1">
               <Nav />
             </nav>
-          </div>
-          <div className="space-y-4">
-            <Button variant="outline" size="sm" className="w-full">
-              Upgrade to Pro
-            </Button>
-            <div className="flex items-center gap-2 text-sm">
-              <GlobeIcon className="h-5 w-5" />
-              <span>English</span>
-            </div>
           </div>
         </div>
       </SheetContent>
