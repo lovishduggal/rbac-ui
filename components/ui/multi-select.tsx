@@ -270,6 +270,7 @@ MultiSelectorTrigger.displayName = 'MultiSelectorTrigger';
 const MultiSelectorInput = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 >(({ className, ...props }, ref) => {
   const {
     setOpen,
