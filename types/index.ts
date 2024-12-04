@@ -16,3 +16,11 @@ export interface Role {
   permissions: string[]; // Permissions associated with the role
 }
 export type Roles = Role[];
+
+export interface Permission {
+  id?: string; // Unique identifier for the permission
+  permissionname: string; // Name of the permission
+  description: string; // Description of the permission
+}
+
+export type Permissions = Permission[];

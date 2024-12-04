@@ -1,4 +1,4 @@
-import type { Role, User } from '@/types';
+import type { Permission, Role, User } from '@/types';
 import { api } from './client';
 
 // Users API:
@@ -52,5 +52,32 @@ export const updateRoleDetails = async (data: Role) => {
 
 export const deleteRole = async (id: string) => {
   const response = await api.delete(`/roles/${id}`);
+  return response.data;
+};
+
+// Permissions API:
+export const createPermission = async (data: Permission) => {
+  const response = await api.post('/permissions', data);
+  return response.data;
+};
+
+export const getAllPermissions = async () => {
+  const response = await api.get('/permissions');
+  return response.data;
+};
+
+export const getPermissionById = async (id: string) => {
+  const response = await api.get(`/permissions/${id}`);
+  return response.data;
+};
+
+export const updatePermissionDetails = async (data: Permission) => {
+  const updatedData = { ...data, id: undefined };
+  const response = await api.put(`/permissions/${data.id}`, updatedData);
+  return response.data;
+};
+
+export const deletePermission = async (id: string) => {
+  const response = await api.delete(`/permissions/${id}`);
   return response.data;
 };

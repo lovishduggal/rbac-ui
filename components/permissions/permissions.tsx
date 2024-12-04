@@ -7,8 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import UserDataTable from './user-data-table';
-import UserFormDialog from './user-form-dialog';
+import PermissionDataTable from './permission-data-table';
+import PermissionFormDialog from './permission-form-dialog';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import DynamicPagination from '../ui/dynamic-pagination';
@@ -16,17 +16,12 @@ import { ITEMS_PER_PAGE } from '@/constants';
 import DynamicSearch from '../ui/dynamic-search';
 import DynamicSortingDropdownMenu from '../ui/dynamic-sorting-dropdown-menu';
 
-const sortByOptions = [
-  { value: 'username', label: 'Name' },
-  { value: 'email', label: 'Email' },
-  { value: 'role', label: 'Role' },
-  { value: 'status', label: 'Status' },
-];
+const sortByOptions = [{ value: 'permissionname', label: 'Name' }];
 
-export default function Users() {
+export default function Permissions() {
   const [search, setSearch] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
-  const [sortBy, setSortBy] = useState('username');
+  const [sortBy, setSortBy] = useState('permissionname');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -48,16 +43,16 @@ export default function Users() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle>Users Management</CardTitle>
-            <CardDescription>Manage your users here.</CardDescription>
+            <CardTitle>Roles Management</CardTitle>
+            <CardDescription>Manage your roles here.</CardDescription>
           </div>
-          <UserFormDialog
-            title="Create User"
-            description="Enter user details"
+          <PermissionFormDialog
+            title="Create Permission"
+            description="Enter permission details"
             btnText="Create"
           >
-            <Button>Create User</Button>
-          </UserFormDialog>
+            <Button>Create Permission</Button>
+          </PermissionFormDialog>
         </div>
       </CardHeader>
       <CardContent>
@@ -71,7 +66,7 @@ export default function Users() {
             sortByOptions={sortByOptions}
           />
         </div>
-        <UserDataTable
+        <PermissionDataTable
           search={search}
           sortBy={sortBy}
           sortOrder={sortOrder}
