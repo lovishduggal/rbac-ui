@@ -219,6 +219,16 @@ export default function RoleFormDialog({
                                     {permission.permissionname}
                                   </MultiSelectorItem>
                                 ))}
+                              {permissionsData &&
+                                permissionsData?.length === 0 && (
+                                  <MultiSelectorItem
+                                    value="No permissions found"
+                                    disabled
+                                    className="flex items-center justify-center -ml-4"
+                                  >
+                                    No permissions found
+                                  </MultiSelectorItem>
+                                )}
                               {isPermissionsDataLoading && (
                                 <MultiSelectorItem
                                   value="Loading..."

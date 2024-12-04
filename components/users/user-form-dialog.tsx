@@ -208,6 +208,15 @@ export default function UserFormDialog({
                                 {role.rolename}
                               </SelectItem>
                             ))}
+                          {rolesData && rolesData?.length === 0 && (
+                            <SelectItem
+                              value="No roles found"
+                              disabled
+                              className="flex items-center justify-center -ml-4"
+                            >
+                              No roles found
+                            </SelectItem>
+                          )}
                           {isRolesDataLoading && (
                             <SelectItem
                               value="Loading..."
