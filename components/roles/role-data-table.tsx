@@ -132,7 +132,7 @@ export default function RoleDataTable({
                 <div className="flex flex-wrap gap-2">
                   {role.permissions.map((permission) => (
                     <Badge key={permission} variant="secondary">
-                      {permission}
+                      {permission.toLocaleLowerCase()}
                     </Badge>
                   ))}
                 </div>

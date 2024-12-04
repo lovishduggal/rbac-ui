@@ -73,10 +73,13 @@ const MultiSelector = ({
 
   const onValueChangeHandler = useCallback(
     (val: string) => {
-      if (value.includes(val)) {
-        onValueChange(value.filter((item) => item !== val));
+      const lowerCaseValue = val.toLowerCase();
+      if (value.map((v) => v.toLowerCase()).includes(lowerCaseValue)) {
+        onValueChange(
+          value.filter((item) => item.toLowerCase() !== lowerCaseValue)
+        );
       } else {
-        onValueChange([...value, val]);
+        onValueChange([...value, lowerCaseValue]);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,13 +90,12 @@ const MultiSelector = ({
     (e: React.SyntheticEvent<HTMLInputElement>) => {
       e.preventDefault();
       const target = e.currentTarget;
-      const selection = target.value.substring(
-        target.selectionStart ?? 0,
-        target.selectionEnd ?? 0
-      );
+      const selection = target.value
+        .substring(target.selectionStart ?? 0, target.selectionEnd ?? 0)
+        .toLowerCase();
 
       setSelectedValue(selection);
-      setIsValueSelected(selection === inputValue);
+      setIsValueSelected(selection === inputValue.toLowerCase());
     },
     [inputValue]
   );
@@ -353,7 +355,9 @@ const MultiSelectorItem = forwardRef<
     e.stopPropagation();
   }, []);
 
-  const isIncluded = Options.includes(value);
+  const isIncluded = Options.map((option) => option.toLowerCase()).includes(
+    value.toLowerCase()
+  );
   return (
     <CommandItem
       ref={ref}

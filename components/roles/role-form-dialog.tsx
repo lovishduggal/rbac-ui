@@ -76,7 +76,7 @@ export default function RoleFormDialog({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      permissions: ['Read', 'Write', 'Update', 'Delete'],
+      permissions: ['read', 'write', 'update', 'delete'],
     },
   });
 
