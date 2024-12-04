@@ -51,7 +51,7 @@ export default function Permissions() {
             description="Enter permission details"
             btnText="Create"
           >
-            <Button>Create Permission</Button>
+            <Button className="ml-2">Create Permission</Button>
           </PermissionFormDialog>
         </div>
       </CardHeader>
