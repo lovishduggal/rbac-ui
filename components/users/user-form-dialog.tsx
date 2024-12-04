@@ -31,11 +31,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createUser, updateUserDetails } from '@/http/api';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { createUser, getAllRoles, updateUserDetails } from '@/http/api';
 import { Loader2Icon } from 'lucide-react';
 import type { AxiosError } from 'axios';
-import type { User } from '@/types';
+import type { Roles, User } from '@/types';
 import { useEffect, useState } from 'react';
 
 const formSchema = z.object({
@@ -71,6 +71,14 @@ export default function UserFormDialog({
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+  });
+
+  const { data: rolesData, isLoading: isRolesDataLoading } = useQuery<
+    Roles,
+    AxiosError
+  >({
+    queryKey: ['get-all-roles'],
+    queryFn: async () => await getAllRoles(),
   });
 
   const { mutate: createUserMutate, isPending: isCreateUserMutatePending } =
@@ -193,9 +201,22 @@ export default function UserFormDialog({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="Admin">Admin</SelectItem>
-                          <SelectItem value="Editor">Editor</SelectItem>
-                          <SelectItem value="Viewer">Viewer</SelectItem>
+                          {rolesData &&
+                            rolesData?.length > 0 &&
+                            rolesData?.map((role) => (
+                              <SelectItem value={role.rolename} key={role.id}>
+                                {role.rolename}
+                              </SelectItem>
+                            ))}
+                          {isRolesDataLoading && (
+                            <SelectItem
+                              value="Loading..."
+                              disabled
+                              className="flex items-center justify-center -ml-4"
+                            >
+                              <Loader2Icon className="animate-spin w-4 h-4" />
+                            </SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
                       <FormDescription>Select role of the user</FormDescription>
@@ -235,7 +256,7 @@ export default function UserFormDialog({
                   {isCreateUserMutatePending ||
                   isUpdateUserDetailsMutatePending ? (
                     <div className="flex items-center gap-2 ">
-                      <Loader2Icon className="animate-spin" />{' '}
+                      <Loader2Icon className="animate-spin w-4 h-4" />{' '}
                       <span>{`${btnText}ing...`}</span>
                     </div>
                   ) : (

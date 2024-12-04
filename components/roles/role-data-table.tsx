@@ -154,7 +154,7 @@ export default function RoleDataTable({
                     {!isDeleteRoleMutatePending &&
                     isRoleDataLoading &&
                     role.id === selectedRoleId ? (
-                      <Loader2Icon className="animate-spin" />
+                      <Loader2Icon className="animate-spin w-4 h-4" />
                     ) : (
                       <PencilIcon />
                     )}
@@ -165,7 +165,7 @@ export default function RoleDataTable({
                   onClick={() => handleDeleteUser(role.id as string)}
                 >
                   {isDeleteRoleMutatePending && role.id === selectedRoleId ? (
-                    <Loader2Icon className="animate-spin" />
+                    <Loader2Icon className="animate-spin w-4 h-4" />
                   ) : (
                     <Trash2Icon />
                   )}

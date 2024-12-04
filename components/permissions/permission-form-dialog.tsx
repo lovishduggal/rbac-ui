@@ -181,7 +181,7 @@ export default function PermissionFormDialog({
                   {isCreatePermissionMutatePending ||
                   isUpdatePermissionDetailsMutatePending ? (
                     <div className="flex items-center gap-2 ">
-                      <Loader2Icon className="animate-spin" />{' '}
+                      <Loader2Icon className="animate-spin w-4 h-4" />{' '}
                       <span>{`${btnText}ing...`}</span>
                     </div>
                   ) : (

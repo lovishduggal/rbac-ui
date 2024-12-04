@@ -156,7 +156,7 @@ export default function UserDataTable({
                     {!isDeleteUserMutatePending &&
                     isUserDataLoading &&
                     user.id === selectedUserId ? (
-                      <Loader2Icon className="animate-spin" />
+                      <Loader2Icon className="animate-spin w-4 h-4" />
                     ) : (
                       <PencilIcon />
                     )}
@@ -167,7 +167,7 @@ export default function UserDataTable({
                   onClick={() => handleDeleteUser(user.id as string)}
                 >
                   {isDeleteUserMutatePending && user.id === selectedUserId ? (
-                    <Loader2Icon className="animate-spin" />
+                    <Loader2Icon className="animate-spin w-4 h-4" />
                   ) : (
                     <Trash2Icon />
                   )}

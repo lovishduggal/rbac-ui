@@ -159,7 +159,7 @@ export default function PermissionDataTable({
                     {!isDeletePermissionMutatePending &&
                     isPermissionDataLoading &&
                     permission.id === selectedPermissionId ? (
-                      <Loader2Icon className="animate-spin" />
+                      <Loader2Icon className="animate-spin w-4 h-4" />
                     ) : (
                       <PencilIcon />
                     )}
@@ -171,7 +171,7 @@ export default function PermissionDataTable({
                 >
                   {isDeletePermissionMutatePending &&
                   permission.id === selectedPermissionId ? (
-                    <Loader2Icon className="animate-spin" />
+                    <Loader2Icon className="animate-spin w-4 h-4" />
                   ) : (
                     <Trash2Icon />
                   )}

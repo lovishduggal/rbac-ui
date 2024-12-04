@@ -32,11 +32,11 @@ import {
   MultiSelectorList,
   MultiSelectorTrigger,
 } from '@/components/ui/multi-select';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createRole, updateRoleDetails } from '@/http/api';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { createRole, getAllPermissions, updateRoleDetails } from '@/http/api';
 import { Loader2Icon } from 'lucide-react';
 import type { AxiosError } from 'axios';
-import type { Role } from '@/types';
+import type { Permissions, Role } from '@/types';
 import { useEffect, useState } from 'react';
 import { Textarea } from '../ui/textarea';
 
@@ -79,6 +79,12 @@ export default function RoleFormDialog({
       permissions: ['Read', 'Write', 'Update', 'Delete'],
     },
   });
+
+  const { data: permissionsData, isLoading: isPermissionsDataLoading } =
+    useQuery<Permissions, AxiosError>({
+      queryKey: ['get-all-permissions'],
+      queryFn: async () => await getAllPermissions(),
+    });
 
   const { mutate: createRoleMutate, isPending: isCreateRoleMutatePending } =
     useMutation({
@@ -199,22 +205,29 @@ export default function RoleFormDialog({
                           className="w-full h-auto"
                         >
                           <MultiSelectorTrigger>
-                            <MultiSelectorInput />
+                            <MultiSelectorInput placeholder="Select Permissions" />
                           </MultiSelectorTrigger>
                           <MultiSelectorContent>
                             <MultiSelectorList>
-                              <MultiSelectorItem value={'Read'}>
-                                Read
-                              </MultiSelectorItem>
-                              <MultiSelectorItem value={'Write'}>
-                                Write
-                              </MultiSelectorItem>
-                              <MultiSelectorItem value={'Update'}>
-                                Update
-                              </MultiSelectorItem>
-                              <MultiSelectorItem value={'Delete'}>
-                                Delete
-                              </MultiSelectorItem>
+                              {permissionsData &&
+                                permissionsData?.length > 0 &&
+                                permissionsData?.map((permission) => (
+                                  <MultiSelectorItem
+                                    value={permission.permissionname}
+                                    key={permission.id}
+                                  >
+                                    {permission.permissionname}
+                                  </MultiSelectorItem>
+                                ))}
+                              {isPermissionsDataLoading && (
+                                <MultiSelectorItem
+                                  value="Loading..."
+                                  disabled
+                                  className="flex items-center justify-center -ml-4"
+                                >
+                                  <Loader2Icon className="animate-spin w-4 h-4" />
+                                </MultiSelectorItem>
+                              )}
                             </MultiSelectorList>
                           </MultiSelectorContent>
                         </MultiSelector>
@@ -230,7 +243,7 @@ export default function RoleFormDialog({
                   {isCreateRoleMutatePending ||
                   isUpdateRoleDetailsMutatePending ? (
                     <div className="flex items-center gap-2 ">
-                      <Loader2Icon className="animate-spin" />{' '}
+                      <Loader2Icon className="animate-spin w-4 h-4" />{' '}
                       <span>{`${btnText}ing...`}</span>
                     </div>
                   ) : (
