@@ -132,7 +132,6 @@ export default function RoleFormDialog({
   }, [roleData, form]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     if (isEdit) UpdateRoleDetailsMutate(values);
     else createRoleMutate(values);
   }

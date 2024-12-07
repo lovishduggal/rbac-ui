@@ -109,8 +109,6 @@ export default function RoleDataTable({
       handleTotalPages(sortedRolesData?.length);
   }, [sortedRolesData, handleTotalPages]);
 
-  console.log('CU in role', currentRoles);
-
   return (
     <Table className="overflow-x-auto">
       <TableHeader>
