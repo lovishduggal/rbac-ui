@@ -116,7 +116,6 @@ export default function PermissionFormDialog({
   }, [permissionData, form]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     if (isEdit) UpdatePermissionDetailsMutate(values);
     else createPermissionMutate(values);
   }

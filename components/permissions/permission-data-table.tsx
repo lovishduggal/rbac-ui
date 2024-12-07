@@ -119,8 +119,6 @@ export default function PermissionDataTable({
       handleTotalPages(sortedPermissionsData?.length);
   }, [sortedPermissionsData, handleTotalPages]);
 
-  console.log('CU in role', currentPermissions);
-
   return (
     <Table className="overflow-x-auto">
       <TableHeader>
