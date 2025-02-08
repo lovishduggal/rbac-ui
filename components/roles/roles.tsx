@@ -16,7 +16,7 @@ import { ITEMS_PER_PAGE } from '@/constants';
 import DynamicSearch from '../ui/dynamic-search';
 import DynamicSortingDropdownMenu from '../ui/dynamic-sorting-dropdown-menu';
 
-const sortByOptions = [{ value: 'rolename', label: 'Name' }];
+const sortByOptions = [{ value: 'rolename', label: 'Role' }];
 
 export default function Roles() {
   const [search, setSearch] = useState('');

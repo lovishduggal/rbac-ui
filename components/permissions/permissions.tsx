@@ -16,7 +16,7 @@ import { ITEMS_PER_PAGE } from '@/constants';
 import DynamicSearch from '../ui/dynamic-search';
 import DynamicSortingDropdownMenu from '../ui/dynamic-sorting-dropdown-menu';
 
-const sortByOptions = [{ value: 'permissionname', label: 'Name' }];
+const sortByOptions = [{ value: 'permissionname', label: 'Permission' }];
 
 export default function Permissions() {
   const [search, setSearch] = useState('');
