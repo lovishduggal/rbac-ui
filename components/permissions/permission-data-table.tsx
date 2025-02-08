@@ -140,8 +140,8 @@ export default function PermissionDataTable({
 
               <TableCell className="flex items-center justify-end gap-2">
                 <RoleFormDialog
-                  title="Edit User"
-                  description="Edit user details"
+                  title="Edit Permission"
+                  description="Edit permission details"
                   btnText="Update"
                   isEdit={true}
                   id={permission.id}

@@ -137,8 +137,8 @@ export default function RoleDataTable({
               </TableCell>
               <TableCell className="flex items-center justify-end gap-2">
                 <RoleFormDialog
-                  title="Edit User"
-                  description="Edit user details"
+                  title="Edit Role"
+                  description="Edit role details"
                   btnText="Update"
                   isEdit={true}
                   id={role.id}
