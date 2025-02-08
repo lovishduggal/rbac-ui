@@ -43,8 +43,8 @@ export default function Permissions() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle>Roles Management</CardTitle>
-            <CardDescription>Manage your roles here.</CardDescription>
+            <CardTitle>Permissions Management</CardTitle>
+            <CardDescription>Manage your permissions here.</CardDescription>
           </div>
           <PermissionFormDialog
             title="Create Permission"
